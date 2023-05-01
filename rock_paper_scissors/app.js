@@ -1,3 +1,32 @@
+/*
+            DOCUMENTATION :::
+
+-------------- forEach --------------
+
+possibleChoice.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
+    userChoice = e.target.id
+    userChoiceDisplay.innerHTML = userChoice
+    generateComputetChoice()
+    getResult()
+}))
+ 
+- La methode forEach() permet de d'executer une fonction sur chaque element d'un tableau.
+    :   const array_1 = ['a','b','c']
+        array_1.forEach(element => console.log(element))
+
+        a
+        b
+        c
+
+- la propriete TARGET est l'objet HTMLElement sur lequel l'évenement s'est produit
+  la propriété TARGET est tres utiles pour trouver l'objet qui est à l'origin de l'événement
+
+
+------------------------------------------
+
+*/
+
+
 const computerChoiceDisplay = document.getElementById('computer_choice')
 const userChoiceDisplay = document.getElementById('user_choice')
 const reslutDisplay = document.getElementById('result')
