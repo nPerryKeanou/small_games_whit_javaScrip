@@ -1,1 +1,1 @@
-# small_games_whit_javaScrip
+# small_games_whit_javaScript
