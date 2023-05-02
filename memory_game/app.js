@@ -102,7 +102,7 @@ function checkMatch(){
     const cards = document.querySelectorAll('img')
     const optionOneId = cardChosenIds[0]
     const optionTwoId = cardChosenIds[1]
-
+    
     console.log(optionOneId)
     console.log(optionTwoId)
     
@@ -114,8 +114,8 @@ function checkMatch(){
         alert('you found a match')
         cards[optionOneId].setAttribute('src', 'images/white.png')
         cards[optionTwoId].setAttribute('src', 'images/white.png')
-        cards[optionOneId].removeEventListener('cick', flipCard)
-        cards[optionTwoId].removeEventListener('cick', flipCard)
+        cards[optionOneId].removeEventListener('click', flipCard)
+        cards[optionTwoId].removeEventListener('click', flipCard)
         cardWon.push(cardChosen)
         cardsUse.push(cards[optionOneId])
         cardsUse.push(cards[optionTwoId])
@@ -135,7 +135,18 @@ function checkMatch(){
 
 
 /*
+    This. ==> La valeur de cet opérateur dépendra de la facon dont
+    une fonction est appelé. Si une fonction est déclarée sur un objet
+    alors this aura la valeur de l'objet.
 
+    - Ici, on crée un objet qui prend la valeur this( qui sera une case crée) et on
+    lui donne come attribut, data-id(et sa valeur).
+    On ajoute dans le array cardChosen, le nom de l'élément qui se trouve dans 
+    le array cardArray à l'index cardId.
+    On ajoute dans le array cardChosenIds, l'objet qui vient d'etre créé.
+    On donne à l'objet créé, l'attribut 'src' et sa valeur qui est l'image qui est
+    à l'index cardId dans le array cardArry.
+    On créée un setTimmOut d'une demi seconde si le array cardChosen.lenght = 2
 */
 function flipCard(){
     const cardId = this.getAttribute('data-id')
