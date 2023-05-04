@@ -1,1 +1,12 @@
-#
+#grid {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+.caseHundredArray {
+    width: 40px;
+    height: 33.5px;
+    border: 1px solid black;
+}
+
