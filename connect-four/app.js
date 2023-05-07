@@ -4,12 +4,14 @@ const choiceColorRed = document.querySelector('#choice-color-red')
 const userOne = 0
 const userTwo = 0
 let i = 1
+let cmpt = 0
 
 
 let oneHundredArray = document.querySelector('#table-100-cases')
 let arrayHundred = [[],[],[],[],[],[],[],[],[],[]]
 let arrayWinRed = []
 let arrayWinBlue  = []
+let arrayWin = []
 //let varIdCaseRed = this.getAttribut('index_ligne')
 //let varIdCaseBlue = this.getAttribut('index_ligne')
 
@@ -18,10 +20,13 @@ let arrayWinBlue  = []
 function createArrayOneHundredCases() {
     for(let i = 0; i < 10; i++){
         for(let j = 0; j < 10; j++){
+            cmpt++
             const caseArrayHundred = document.createElement('div')
             caseArrayHundred.setAttribute('colorChoice', 'white')
             caseArrayHundred.classList.add('caseHundredArray')
-            caseArrayHundred.setAttribute('index_ligne', j)
+            caseArrayHundred.setAttribute('index_colone', j)
+            caseArrayHundred.setAttribute('index_ligne', i)
+            caseArrayHundred.setAttribute('compteur', cmpt)
             caseArrayHundred.addEventListener('click', choiceCase)
             caseArrayHundred.style.width = '40px'
             caseArrayHundred.style.height = '33.5px'
@@ -47,8 +52,8 @@ function choiceCase(){
         console.log(varIdCaseRed)
         this.appendChild(ballUserOne)
         arrayWinRed.push(varIdCaseRed)
-        //win()
         console.log(arrayWinRed)
+        //winRed()
     } else {
         const ballUserTwo = document.createElement('div')
         ballUserTwo.style.width = '20px'
@@ -58,10 +63,8 @@ function choiceCase(){
         const varIdCaseBlue = this.getAttribute('index_ligne')
         this.appendChild(ballUserTwo)
         arrayWinBlue.push(varIdCaseBlue)
-        if (arrayWinBlue.length >= 4){
-            win()
-        }
-        console.log(arrayWinRed)
+        console.log(arrayWinBlue)
+        //winBlue()
     }
     i++
     this.removeEventListener('click', choiceCase)
@@ -78,32 +81,21 @@ On peut mettre un id de 0 a 9 pour chaque tableau
 - Donc si dans le tableau de valeur, on retrouve 4 fois d'afillé le meme chiffre, c'est gagné.
 - Si on retrouve une suite de chiffre qui se suit, c'est gagné
 
-for (let i = 0; i < 4; i++){
-    if (array[i] == aaray[i+1]){
-        ok = 1
-        i++
-    }else {
-        ok = 0
-    }
-    if (ok == 1){
-        console.log('c'est gagne)
-    }
-}  ET IL FAUT VERIFIER SI LES CASES SE COLLET, AVEC UN MODULU TOUT LES 10 CASES
+
 
 */
-function win() {
-    let ok = 0
-    for (let i = -1; i < 4; ++i){
-        if ((arrayWinBlue[arrayWinBlue.length - i] == arrayWinBlue[i+1]) && (arrayHundred[i+10] == arrayHundred[i++])){
-            ok = 1
-            i++
-        }else {
-            ok = 0
+function winBlue() {
+    let jj = 1
+    if (arrayWinBlue.length >= 4){
+        for (let ii = 4; ii > 0; ii--){
+            arrayWin.push(arrayWinBlue[arrayWinBlue.length-jj])
+            jj++
         }
-        if (ok == 1){
-            console.log("c'est gagne")
-        }
-    }   
+        console.log(arrayWin)
+    }
+    jj = 1
+    arrayWinBlue.forEach(e => arrayWinBlue.pop(e))
+    console.log(arrayWinBlue)
 }
 
 
