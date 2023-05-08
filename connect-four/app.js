@@ -12,17 +12,33 @@ let arrayHundred = [[],[],[],[],[],[],[],[],[],[]]
 let arrayWinRed = []
 let arrayWinBlue  = []
 let arrayWin = []
+
+
+let arrayOfListBlue = []
+let arrayOfListRed = []
+
+
 let listeCaseRed = {
     "indexCase" : "",
     "indexLigne" : "",
     "indexColone" : ''
 }
-
 let listeCaseBlue = {
     "indexCase" : "",
     "indexLigne" : "",
     "indexColone" : ''
 }
+
+
+// let arrayBlueIndexCase = []
+// let arrayBlueIndexLigne = []
+// let arrayBlueIndexColone = []
+// let arrayRedIndexCase = []
+// let arrayRedIndexLigne = []
+// let arrayRedIndexColone = []
+
+
+
 //let varIdCaseRed = this.getAttribut('index_ligne')
 //let varIdCaseBlue = this.getAttribut('index_ligne')
 
@@ -54,6 +70,7 @@ function createArrayOneHundredCases() {
 function choiceCase(){
     console.log('create case')
     if (i % 2 == 0){
+        console.log("RRRRREEEEEDDD")
         const ballUserOne = document.createElement('div')
         ballUserOne.style.width = '20px'
         ballUserOne.style.height = '20px'
@@ -62,20 +79,19 @@ function choiceCase(){
         const varIdCaseRed = this.getAttribute('compteur')
         const varIdLigneCaseRed = this.getAttribute('index_ligne')
         const varIdColoneCaseRed = this.getAttribute('index_colone')
-        listeCaseRed.indexCase = varIdCaseRed
-        listeCaseRed.indexLigne = varIdLigneCaseRed
-        listeCaseRed.indexColone = varIdColoneCaseRed
-        console.log("varIdCaseRed ---> " + varIdCaseRed)
-        console.log("varIdLigneCaseRed ---> " + varIdLigneCaseRed)
-        console.log("varIdColoneCaseRed ---> " + varIdColoneCaseRed)
-        console.log(listeCaseRed)
+        let newObjectRed = new Object()
+        newObjectRed.indexCase = varIdCaseRed
+        newObjectRed.indexLigne = varIdLigneCaseRed
+        newObjectRed.indexColone = varIdColoneCaseRed
+        arrayOfListRed.push(newObjectRed)
+        console.log(arrayOfListRed)
         this.appendChild(ballUserOne)
-        //arrayWinRed.push(varIdCaseRed)
         arrayWinRed.push(ballUserOne)
-        
-        console.log(arrayWinRed)
-        //win()
+        if (arrayOfListRed.length >= 4){
+            win(arrayOfListRed)   
+        }
     } else {
+        console.log("BLLLLLLUUUUUUUEEEEEE")
         const ballUserTwo = document.createElement('div')
         ballUserTwo.style.width = '20px'
         ballUserTwo.style.height = '20px'
@@ -84,49 +100,43 @@ function choiceCase(){
         const varIdCaseBlue = this.getAttribute('compteur')
         const varIdLigneCaseBlue = this.getAttribute('index_ligne')
         const varIdColoneCaseBlue = this.getAttribute('index_Colone')
-        listeCaseBlue.indexCase = varIdCaseBlue
-        listeCaseBlue.indexLigne = varIdLigneCaseBlue
-        listeCaseBlue.indexColone = varIdColoneCaseBlue
-        console.log("varIdCaseBlue ---> " + varIdCaseBlue)
-        console.log("varIdLigneCaseBlue ---> " + varIdLigneCaseBlue)
-        console.log("varIdColoneCaseBlue ---> " + varIdColoneCaseBlue)
-        console.log(listeCaseBlue)
+        let newObjectBlue = new Object()
+        newObjectBlue.indexCase = varIdCaseBlue
+        newObjectBlue.indexLigne = varIdLigneCaseBlue
+        newObjectBlue.indexColone = varIdColoneCaseBlue
+        arrayOfListBlue.push(newObjectBlue)
+        console.log(arrayOfListBlue)
         this.appendChild(ballUserTwo)
-        //arrayWinBlue.push(varIdCaseBlue)
-        arrayWinBlue.push(ballUserTwo)
-        console.log(arrayWinBlue)
-        if (arrayWinBlue.length >= 4){
-            win(arrayWinBlue)
+        if (arrayOfListBlue.length >= 4){
+            win(arrayOfListBlue)   
         }
     }
     i++
     this.removeEventListener('click', choiceCase)
 }
 
+function win(listCase) {
+    //recuperer les valeurs lignes des 4 dernieres listes dans un tab ac obj.keys .
+    //recuperer les valeurs des colones des 4 derniers listes dans un tab ac obj.keys 
 
-/* si   : 4 ball horizontale
-        : 4 ball vertical
-        : 4 ball diagonal
-        c'est gagné
+    //si les nb dans le tabListLigne sont toute egale, c'est hoizontale. donc boole = 1
+        //comme boole = 1, on doit verifier les colone pour voir si les boulles sont colles. pour ca, il faut trier le tabListCol en orde croissant.
+        //Si c'est dans l'ordre croissant par 1. C'est une ligne de 4 complet et c'est gagané. otherBoole = 1
+    //sinon si les nb des colone sont tous egaux, c'est vertical. donc boole = 1
+        //il faut verifier alors les lignes pour voir si elles sont dans l'ordre croissant par 1.
+        //si oui c'est gagne.
+    //sinon si il faut trier les deux tab par odre croissant par et si c'est ok, c'est verticale
 
-le gris est une suite de 10 tableau de 10 case.
-On peut mettre un id de 0 a 9 pour chaque tableau 
-- Donc si dans le tableau de valeur, on retrouve 4 fois d'afillé le meme chiffre, c'est gagné.
-- Si on retrouve une suite de chiffre qui se suit, c'est gagné
+    listCase.forEach(objet => {
+        arrayOfListBlue.push(objet.indexLigne)
+    })
+    
+    for(let ok = 0; ok < 4; ok++){
+        console.log("- - - - " + arrayOfListBlue[ok])
+    }
+    
+    
 
-
-
-*/
-function win(arrayBall) {
-    //verifier les lignes des 4 derniers element du tab
-    console.log(arrayBall)
-    arrayBall.forEach(element => {
-        console.log(element.index_ligne)
-    });
-
-
-
-    //verifier les 4 colones des 4 derniers élément du tab
 }
 createArrayOneHundredCases()
 //choiceColorFunction()
