@@ -12,6 +12,17 @@ let arrayHundred = [[],[],[],[],[],[],[],[],[],[]]
 let arrayWinRed = []
 let arrayWinBlue  = []
 let arrayWin = []
+let listeCaseRed = {
+    "indexCase" : "",
+    "indexLigne" : "",
+    "indexColone" : ''
+}
+
+let listeCaseBlue = {
+    "indexCase" : "",
+    "indexLigne" : "",
+    "indexColone" : ''
+}
 //let varIdCaseRed = this.getAttribut('index_ligne')
 //let varIdCaseBlue = this.getAttribut('index_ligne')
 
@@ -48,23 +59,45 @@ function choiceCase(){
         ballUserOne.style.height = '20px'
         ballUserOne.style.borderRadius = '10px'
         ballUserOne.style.backgroundColor = 'red'
-        const varIdCaseRed = this.getAttribute('index_ligne')
-        console.log(varIdCaseRed)
+        const varIdCaseRed = this.getAttribute('compteur')
+        const varIdLigneCaseRed = this.getAttribute('index_ligne')
+        const varIdColoneCaseRed = this.getAttribute('index_colone')
+        listeCaseRed.indexCase = varIdCaseRed
+        listeCaseRed.indexLigne = varIdLigneCaseRed
+        listeCaseRed.indexColone = varIdColoneCaseRed
+        console.log("varIdCaseRed ---> " + varIdCaseRed)
+        console.log("varIdLigneCaseRed ---> " + varIdLigneCaseRed)
+        console.log("varIdColoneCaseRed ---> " + varIdColoneCaseRed)
+        console.log(listeCaseRed)
         this.appendChild(ballUserOne)
-        arrayWinRed.push(varIdCaseRed)
+        //arrayWinRed.push(varIdCaseRed)
+        arrayWinRed.push(ballUserOne)
+        
         console.log(arrayWinRed)
-        //winRed()
+        //win()
     } else {
         const ballUserTwo = document.createElement('div')
         ballUserTwo.style.width = '20px'
         ballUserTwo.style.height = '20px'
         ballUserTwo.style.borderRadius = '10px'
         ballUserTwo.style.backgroundColor = 'blue'
-        const varIdCaseBlue = this.getAttribute('index_ligne')
+        const varIdCaseBlue = this.getAttribute('compteur')
+        const varIdLigneCaseBlue = this.getAttribute('index_ligne')
+        const varIdColoneCaseBlue = this.getAttribute('index_Colone')
+        listeCaseBlue.indexCase = varIdCaseBlue
+        listeCaseBlue.indexLigne = varIdLigneCaseBlue
+        listeCaseBlue.indexColone = varIdColoneCaseBlue
+        console.log("varIdCaseBlue ---> " + varIdCaseBlue)
+        console.log("varIdLigneCaseBlue ---> " + varIdLigneCaseBlue)
+        console.log("varIdColoneCaseBlue ---> " + varIdColoneCaseBlue)
+        console.log(listeCaseBlue)
         this.appendChild(ballUserTwo)
-        arrayWinBlue.push(varIdCaseBlue)
+        //arrayWinBlue.push(varIdCaseBlue)
+        arrayWinBlue.push(ballUserTwo)
         console.log(arrayWinBlue)
-        //winBlue()
+        if (arrayWinBlue.length >= 4){
+            win(arrayWinBlue)
+        }
     }
     i++
     this.removeEventListener('click', choiceCase)
@@ -84,21 +117,16 @@ On peut mettre un id de 0 a 9 pour chaque tableau
 
 
 */
-function winBlue() {
-    let jj = 1
-    if (arrayWinBlue.length >= 4){
-        for (let ii = 4; ii > 0; ii--){
-            arrayWin.push(arrayWinBlue[arrayWinBlue.length-jj])
-            jj++
-        }
-        console.log(arrayWin)
-    }
-    jj = 1
-    arrayWinBlue.forEach(e => arrayWinBlue.pop(e))
-    console.log(arrayWinBlue)
+function win(arrayBall) {
+    //verifier les lignes des 4 derniers element du tab
+    console.log(arrayBall)
+    arrayBall.forEach(element => {
+        console.log(element.index_ligne)
+    });
+
+
+
+    //verifier les 4 colones des 4 derniers élément du tab
 }
-
-
-
 createArrayOneHundredCases()
 //choiceColorFunction()
