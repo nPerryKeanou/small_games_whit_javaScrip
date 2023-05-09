@@ -146,18 +146,44 @@ function winBlue(listCase) {
     let booleligne = 1
     let booleCol  = 1
 
-    if (fnCheckLigne(tabObjetLigne) == 1)
-    {
-
+    if (fnCheckLigne(tabObjetLigne) == 1){
+        console.log("c'est horizontale")
     }else if(fnCheckCol(tabObjetColone) == 1){
-
+        console.log("c'est vertical")
     }else if( fnCheckOblique(tabObjetLigne, tabObjetColone) == 1){
-
+        console.log("c'est obliqe")
     }
 }
 
+function fnCheckLigne(tabIndexLigne){
+    var i = tabIndexLigne[3]
+    let booleanLigne = 1
+    for (var j = 0; j < tabIndexLigne.length; j++){
+        if (tabIndexLigne[j] == i){
+            booleanLigne = 1
+        }else{
+            booleanLigne = 0
+        }
+    }
+    return booleanLigne
+}
 
+function fnCheckCol(tabIndexCol){
+    var i = tabIndexCol[3]
+    let booleanColone = 1
+    for (var j = 0; j < tabIndexCol.length; j++){
+        if (tabIndexCol[j] == i){
+            booleanColone = 1
+        }else{
+            booleanColone = 0
+        }
+    }
+    return booleanColone
+}
 
+function fnCheckOblique(tabIndexLigne, tabIndexCol){
+    
+}
 
 createArrayOneHundredCases()
 //choiceColorFunction()
