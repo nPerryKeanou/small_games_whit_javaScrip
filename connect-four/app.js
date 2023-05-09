@@ -86,10 +86,10 @@ function choiceCase(){
         arrayOfListRed.push(newObjectRed)
         console.log(arrayOfListRed)
         this.appendChild(ballUserOne)
-        arrayWinRed.push(ballUserOne)
-        if (arrayOfListRed.length >= 4){
-            win(arrayOfListRed)   
-        }
+        // arrayWinRed.push(ballUserOne)
+        // if (arrayOfListRed.length >= 4){
+        //     winRed(arrayOfListRed)   
+        // }
     } else {
         console.log("BLLLLLLUUUUUUUEEEEEE")
         const ballUserTwo = document.createElement('div')
@@ -107,15 +107,18 @@ function choiceCase(){
         arrayOfListBlue.push(newObjectBlue)
         console.log(arrayOfListBlue)
         this.appendChild(ballUserTwo)
+        console.log('-----------------------------------------')
         if (arrayOfListBlue.length >= 4){
-            win(arrayOfListBlue)   
+            winBlue(arrayOfListBlue)   
+            console.log(arrayOfListBlue)
         }
+        console.log('-----------------------------------------')
     }
     i++
     this.removeEventListener('click', choiceCase)
 }
 
-function win(listCase) {
+function winBlue(listCase) {
     //recuperer les valeurs lignes des 4 dernieres listes dans un tab ac obj.keys .
     //recuperer les valeurs des colones des 4 derniers listes dans un tab ac obj.keys 
 
@@ -126,17 +129,35 @@ function win(listCase) {
         //il faut verifier alors les lignes pour voir si elles sont dans l'ordre croissant par 1.
         //si oui c'est gagne.
     //sinon si il faut trier les deux tab par odre croissant par et si c'est ok, c'est verticale
-
-    listCase.forEach(objet => {
-        arrayOfListBlue.push(objet.indexLigne)
-    })
     
-    for(let ok = 0; ok < 4; ok++){
-        console.log("- - - - " + arrayOfListBlue[ok])
+    
+    let tabObjetLigne = [] // ce tab va recuperer tout les indexLigne des objet
+    listCase.forEach(element => {
+        tabObjetLigne.push(element.indexLigne)
+    });
+    let arrayLigneSlice = tabObjetLigne.slice(-4)// creer un ne tab avec les 4 derniere ligne 
+    
+    let tabObjetColone = [] // ce tab va recuperer tout les indexLigne des objet
+    listCase.forEach(element => {
+        tabObjetColone.push(element.indexColone)
+    });
+    let arrayColoneSlice = tabObjetColone.slice(-4)// creer un tab ac les 4 derniers colones
+    
+    let booleligne = 1
+    let booleCol  = 1
+
+    if (fnCheckLigne(tabObjetLigne) == 1)
+    {
+
+    }else if(fnCheckCol(tabObjetColone) == 1){
+
+    }else if( fnCheckOblique(tabObjetLigne, tabObjetColone) == 1){
+
     }
-    
-    
-
 }
+
+
+
+
 createArrayOneHundredCases()
 //choiceColorFunction()
