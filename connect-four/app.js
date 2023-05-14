@@ -148,8 +148,10 @@ function winBlue(listCase) {
 
     if (fnCheckLigne(tabObjetLigne) == 1){
         console.log("c'est horizontale")
+        console.log(tabObjetLigne);
     }else if(fnCheckCol(tabObjetColone) == 1){
         console.log("c'est vertical")
+        console.log(tabObjetColone);
     }else if( fnCheckOblique(tabObjetLigne, tabObjetColone) == 1){
         console.log("c'est obliqe")
     }
