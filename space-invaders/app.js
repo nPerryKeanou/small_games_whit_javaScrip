@@ -1,6 +1,7 @@
 const grid = document.querySelector('.grid')
 let currentShooterIndex = 202 
 let width = 15
+let direction = 1
 
 
 for (let i = 0; i < 255; i++){
@@ -55,4 +56,11 @@ function moveInvaders() {
     const rightEdge = alienInvaders[alienInvaders.length - 1] % width === width - 1
     remove()
 
+    for (let i = 0;i < alienInvaders.length; i++) {
+        alienInvaders[i] += direction
+    }
+
+    draw()
 }
+
+setInterval(moveInvaders, 500)
