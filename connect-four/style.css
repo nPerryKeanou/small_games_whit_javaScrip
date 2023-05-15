@@ -1,14 +1,22 @@
-#grid {
-    position: absolute;
-    width: 420px;
-    height: 370px;
-    border: 1px solid black;
+.grid {
+    border: 1px solid;
+    height: 120px;
+    width: 140px;
     display: flex;
     flex-wrap: wrap;
-}
-
-.caseHundredArray {
-    width: 20px;
+  }
+  
+  .grid div {
     height: 20px;
-    border: 1px solid black;
-}
+    width: 20px;
+  }
+  
+  .player-one {
+    background-color: red;
+    border-radius: 10px;
+  }
+  
+  .player-two {
+    background-color: blue;
+    border-radius: 10px;
+  }

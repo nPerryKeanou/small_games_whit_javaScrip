@@ -1,191 +1,129 @@
-const grid = document.querySelector('#grid')
-const choiceColorBlue = document.querySelector('#choice-color-blue')
-const choiceColorRed = document.querySelector('#choice-color-red')
-const userOne = 0
-const userTwo = 0
-let i = 1
-let cmpt = 0
-
-
-let oneHundredArray = document.querySelector('#table-100-cases')
-let arrayHundred = [[],[],[],[],[],[],[],[],[],[]]
-let arrayWinRed = []
-let arrayWinBlue  = []
-let arrayWin = []
-
-
-let arrayOfListBlue = []
-let arrayOfListRed = []
-
-
-let listeCaseRed = {
-    "indexCase" : "",
-    "indexLigne" : "",
-    "indexColone" : ''
-}
-let listeCaseBlue = {
-    "indexCase" : "",
-    "indexLigne" : "",
-    "indexColone" : ''
-}
-
-
-// let arrayBlueIndexCase = []
-// let arrayBlueIndexLigne = []
-// let arrayBlueIndexColone = []
-// let arrayRedIndexCase = []
-// let arrayRedIndexLigne = []
-// let arrayRedIndexColone = []
-
-
-
-//let varIdCaseRed = this.getAttribut('index_ligne')
-//let varIdCaseBlue = this.getAttribut('index_ligne')
-
-
-//function qui cree un tableau de 10 tableau de 10 case./**
-function createArrayOneHundredCases() {
-    for(let i = 0; i < 10; i++){
-        for(let j = 0; j < 10; j++){
-            cmpt++
-            const caseArrayHundred = document.createElement('div')
-            caseArrayHundred.setAttribute('colorChoice', 'white')
-            caseArrayHundred.classList.add('caseHundredArray')
-            caseArrayHundred.setAttribute('index_colone', j)
-            caseArrayHundred.setAttribute('index_ligne', i)
-            caseArrayHundred.setAttribute('compteur', cmpt)
-            caseArrayHundred.addEventListener('click', choiceCase)
-            caseArrayHundred.style.width = '40px'
-            caseArrayHundred.style.height = '33.5px'
-            arrayHundred.push(caseArrayHundred)
-            grid.appendChild(caseArrayHundred)
+document.addEventListener('DOMContentLoaded', () => {
+    const squares = document.querySelectorAll('.grid div')
+    const result = document.querySelector('#result')
+    const displayCurrentPlayer = document.querySelector('#current-player')
+    let currentPlayer = 1
+  
+    const winningArrays = [
+      [0, 1, 2, 3],
+      [41, 40, 39, 38],
+      [7, 8, 9, 10],
+      [34, 33, 32, 31],
+      [14, 15, 16, 17],
+      [27, 26, 25, 24],
+      [21, 22, 23, 24],
+      [20, 19, 18, 17],
+      [28, 29, 30, 31],
+      [13, 12, 11, 10],
+      [35, 36, 37, 38],
+      [6, 5, 4, 3],
+      [0, 7, 14, 21],
+      [41, 34, 27, 20],
+      [1, 8, 15, 22],
+      [40, 33, 26, 19],
+      [2, 9, 16, 23],
+      [39, 32, 25, 18],
+      [3, 10, 17, 24],
+      [38, 31, 24, 17],
+      [4, 11, 18, 25],
+      [37, 30, 23, 16],
+      [5, 12, 19, 26],
+      [36, 29, 22, 15],
+      [6, 13, 20, 27],
+      [35, 28, 21, 14],
+      [0, 8, 16, 24],
+      [41, 33, 25, 17],
+      [7, 15, 23, 31],
+      [34, 26, 18, 10],
+      [14, 22, 30, 38],
+      [27, 19, 11, 3],
+      [35, 29, 23, 17],
+      [6, 12, 18, 24],
+      [28, 22, 16, 10],
+      [13, 19, 25, 31],
+      [21, 15, 9, 3],
+      [20, 26, 32, 38],
+      [36, 30, 24, 18],
+      [5, 11, 17, 23],
+      [37, 31, 25, 19],
+      [4, 10, 16, 22],
+      [2, 10, 18, 26],
+      [39, 31, 23, 15],
+      [1, 9, 17, 25],
+      [40, 32, 24, 16],
+      [9, 17, 25, 33],
+      [8, 16, 24, 32],
+      [11, 17, 23, 29],
+      [12, 18, 24, 30],
+      [1, 2, 3, 4],
+      [5, 4, 3, 2],
+      [8, 9, 10, 11],
+      [12, 11, 10, 9],
+      [15, 16, 17, 18],
+      [19, 18, 17, 16],
+      [22, 23, 24, 25],
+      [26, 25, 24, 23],
+      [29, 30, 31, 32],
+      [33, 32, 31, 30],
+      [36, 37, 38, 39],
+      [40, 39, 38, 37],
+      [7, 14, 21, 28],
+      [8, 15, 22, 29],
+      [9, 16, 23, 30],
+      [10, 17, 24, 31],
+      [11, 18, 25, 32],
+      [12, 19, 26, 33],
+      [13, 20, 27, 34],
+    ]
+  
+    function checkBoard() {
+      for (let y = 0; y < winningArrays.length; y++) {
+        const square1 = squares[winningArrays[y][0]]
+        const square2 = squares[winningArrays[y][1]]
+        const square3 = squares[winningArrays[y][2]]
+        const square4 = squares[winningArrays[y][3]]
+  
+        //check those squares to see if they all have the class of player-one
+        if (
+          square1.classList.contains('player-one') &&
+          square2.classList.contains('player-one') &&
+          square3.classList.contains('player-one') &&
+          square4.classList.contains('player-one')
+        )
+        {
+          result.innerHTML = 'Player One Wins!'
         }
-    }
-    //console.log(arrayHundred)
-}
-
-//juste crrer un i compteur pour le nombre de click dans le tablau; les nb pair en blue et impair en rouge; On peut clicker qu'une fois pas couleur
-
-
-function choiceCase(){
-    console.log('create case')
-    if (i % 2 == 0){
-        console.log("RRRRREEEEEDDD")
-        const ballUserOne = document.createElement('div')
-        ballUserOne.style.width = '20px'
-        ballUserOne.style.height = '20px'
-        ballUserOne.style.borderRadius = '10px'
-        ballUserOne.style.backgroundColor = 'red'
-        const varIdCaseRed = this.getAttribute('compteur')
-        const varIdLigneCaseRed = this.getAttribute('index_ligne')
-        const varIdColoneCaseRed = this.getAttribute('index_colone')
-        let newObjectRed = new Object()
-        newObjectRed.indexCase = varIdCaseRed
-        newObjectRed.indexLigne = varIdLigneCaseRed
-        newObjectRed.indexColone = varIdColoneCaseRed
-        arrayOfListRed.push(newObjectRed)
-        console.log(arrayOfListRed)
-        this.appendChild(ballUserOne)
-        // arrayWinRed.push(ballUserOne)
-        // if (arrayOfListRed.length >= 4){
-        //     winRed(arrayOfListRed)   
-        // }
-    } else {
-        console.log("BLLLLLLUUUUUUUEEEEEE")
-        const ballUserTwo = document.createElement('div')
-        ballUserTwo.style.width = '20px'
-        ballUserTwo.style.height = '20px'
-        ballUserTwo.style.borderRadius = '10px'
-        ballUserTwo.style.backgroundColor = 'blue'
-        const varIdCaseBlue = this.getAttribute('compteur')
-        const varIdLigneCaseBlue = this.getAttribute('index_ligne')
-        const varIdColoneCaseBlue = this.getAttribute('index_Colone')
-        let newObjectBlue = new Object()
-        newObjectBlue.indexCase = varIdCaseBlue
-        newObjectBlue.indexLigne = varIdLigneCaseBlue
-        newObjectBlue.indexColone = varIdColoneCaseBlue
-        arrayOfListBlue.push(newObjectBlue)
-        console.log(arrayOfListBlue)
-        this.appendChild(ballUserTwo)
-        console.log('-----------------------------------------')
-        if (arrayOfListBlue.length >= 4){
-            winBlue(arrayOfListBlue)   
-            console.log(arrayOfListBlue)
+        //check those squares to see if they all have the class of player-two
+        if (
+          square1.classList.contains('player-two') &&
+          square2.classList.contains('player-two') &&
+          square3.classList.contains('player-two') &&
+          square4.classList.contains('player-two')
+        )
+        {
+          result.innerHTML = 'Player Two Wins!'
         }
-        console.log('-----------------------------------------')
+      }
     }
-    i++
-    this.removeEventListener('click', choiceCase)
-}
-
-function winBlue(listCase) {
-    //recuperer les valeurs lignes des 4 dernieres listes dans un tab ac obj.keys .
-    //recuperer les valeurs des colones des 4 derniers listes dans un tab ac obj.keys 
-
-    //si les nb dans le tabListLigne sont toute egale, c'est hoizontale. donc boole = 1
-        //comme boole = 1, on doit verifier les colone pour voir si les boulles sont colles. pour ca, il faut trier le tabListCol en orde croissant.
-        //Si c'est dans l'ordre croissant par 1. C'est une ligne de 4 complet et c'est gagané. otherBoole = 1
-    //sinon si les nb des colone sont tous egaux, c'est vertical. donc boole = 1
-        //il faut verifier alors les lignes pour voir si elles sont dans l'ordre croissant par 1.
-        //si oui c'est gagne.
-    //sinon si il faut trier les deux tab par odre croissant par et si c'est ok, c'est verticale
-    
-    
-    let tabObjetLigne = [] // ce tab va recuperer tout les indexLigne des objet
-    listCase.forEach(element => {
-        tabObjetLigne.push(element.indexLigne)
-    });
-    let arrayLigneSlice = tabObjetLigne.slice(-4)// creer un ne tab avec les 4 derniere ligne 
-    
-    let tabObjetColone = [] // ce tab va recuperer tout les indexLigne des objet
-    listCase.forEach(element => {
-        tabObjetColone.push(element.indexColone)
-    });
-    let arrayColoneSlice = tabObjetColone.slice(-4)// creer un tab ac les 4 derniers colones
-    
-    let booleligne = 1
-    let booleCol  = 1
-
-    if (fnCheckLigne(tabObjetLigne) == 1){
-        console.log("c'est horizontale")
-        console.log(tabObjetLigne);
-    }else if(fnCheckCol(tabObjetColone) == 1){
-        console.log("c'est vertical")
-        console.log(tabObjetColone);
-    }else if( fnCheckOblique(tabObjetLigne, tabObjetColone) == 1){
-        console.log("c'est obliqe")
+  
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].onclick = () => {
+        //if the square below your current square is taken, you can go ontop of it
+        if (squares[i + 7].classList.contains('taken') &&!squares[i].classList.contains('taken')) {
+          if (currentPlayer == 1) {
+            squares[i].classList.add('taken')
+            squares[i].classList.add('player-one')
+            currentPlayer = 2
+            displayCurrentPlayer.innerHTML = currentPlayer
+          } else if (currentPlayer == 2){
+            squares[i].classList.add('taken')
+            squares[i].classList.add('player-two')
+            currentPlayer = 1
+            displayCurrentPlayer.innerHTML = currentPlayer        
+          } 
+        } else alert('cant go here')
+        checkBoard()
+      }
     }
-}
-
-function fnCheckLigne(tabIndexLigne){
-    var i = tabIndexLigne[3]
-    let booleanLigne = 1
-    for (var j = 0; j < tabIndexLigne.length; j++){
-        if (tabIndexLigne[j] == i){
-            booleanLigne = 1
-        }else{
-            booleanLigne = 0
-        }
-    }
-    return booleanLigne
-}
-
-function fnCheckCol(tabIndexCol){
-    var i = tabIndexCol[3]
-    let booleanColone = 1
-    for (var j = 0; j < tabIndexCol.length; j++){
-        if (tabIndexCol[j] == i){
-            booleanColone = 1
-        }else{
-            booleanColone = 0
-        }
-    }
-    return booleanColone
-}
-
-function fnCheckOblique(tabIndexLigne, tabIndexCol){
     
-}
-
-createArrayOneHundredCases()
-//choiceColorFunction()
+  })
