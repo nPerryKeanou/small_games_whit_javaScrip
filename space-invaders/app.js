@@ -103,7 +103,9 @@ function shoot(e) {
   let laserId
   let currentLaserIndex = currentShooterIndex
   function moveLaser() {
-    squares[currentLaserIndex].classList.remove('laser')
+    if (squares[currentLaserIndex].classList.contains('laser')){
+        squares[currentLaserIndex].classList.remove('laser')
+    }
     currentLaserIndex -= width
     squares[currentLaserIndex].classList.add('laser')
 
