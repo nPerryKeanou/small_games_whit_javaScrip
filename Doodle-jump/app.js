@@ -52,6 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+
+    /*
+        creation de la class platform. Une class pour chaque objet platform créées.
+        le constructeur prend l'argument newPlatBottom. Une variable crée dans la fn creatPlatform, elle a pour valeur (100 + i * platGap), ce qui change a chaque objet créés.
+        On donne à la propriété bottom, la let newPlatBottom, qui va changer pour chaque objet créés.
+        On donne à la propriété left, une valeur aléatoire en 0 et 315, qui va changer a chaque objet (il est possible d'avoir deux les meme)
+        On créé une instance visaul et on lui crée un element, une div
+
+        ensuite, on créé une constante visual, qui prendra la valeur de l'instance visual de la class (this.visual).
+        On donne un attribut class de valeur platform.
+        On donne du css, left, elle aura pour valeur, la valeur du this.left ( l'emplacement du DOMRECT de l'objet crée ) + 'px' 
+        On donne du css, bottom, elle aura pour valeur, la valeur du this.bottom ( l'emplacement du DOMRECT de l'objet crée ) + 'px'
+        On ajoute cette constante à grid
+
+        Ceci, crée une plateforme
+    */
     class Platform {
         constructor(newPlatBottom) {
             this.bottom = newPlatBottom
@@ -68,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /*
-
+    
     */
     function movePlatforms() {
         if (doodlerBottomSpace > 200) {
