@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < platformCount; i++){
             let platGap = 600 / platformCount
             let newPlatBottom = 100 + i * platGap
+            console.log("newPlatBottom ---> " + newPlatBottom + " i ---->  " + i)
             let newPlatform = new Platform(newPlatBottom)
             platforms.push(newPlatform)
             //console.log(platforms)
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /*
-    
+
     */
     function movePlatforms() {
         if (doodlerBottomSpace > 200) {
@@ -202,6 +203,17 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(leftTimerId)
     }
 
+
+
+    /*
+        Fonction principal.
+        Elle check si IsGameOver n'est pas false. Si il est pas false, on rentre dans la condition.
+        On lance la fonction createPlateform.
+        Ensuite, on lance la fonction createDoodler.
+        Ensuite, on lance une interval sur la fonction movePlateform.
+        Ensuite, on lance la function jump.
+        Event sur keyup.
+    */
     function start() {
         if (!isGameOver) {
             createPlatforms()
