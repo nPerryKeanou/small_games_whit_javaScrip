@@ -16,15 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let rightTimerId
     let score = 0
 
-
-    /*
-        Création de platform.
-        Une boucle qui va créer des plateforms selon le nombre de platFormCount.
-            On crée une variable platGap qui aura comme valeur, la taille de grid / par le nb de plateforme
-            On crée une variable newPlatBottom qui aura comme valeur, 100 + i * (taille de grid / par le nb de plateforme). Les plateform auront leur hauteur
-            On crée la plateform qui sera un objet de class, l'argument 'newPlatBottom' est le constructor de la class
-            On ajoute cette objet dans un tableau 
-    */
     function createPlatforms() {
         for (let i = 0; i < platformCount; i++){
             let platGap = 600 / platformCount
@@ -37,13 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /*
-        création du doodler.
-        On ajoute dans la div 'grid', une div 'doodler' qui à été crée au lancemen du fichier.
-        On donne a cette div, un attribut class qui a pour valeur 'doodler'.
-        doodlerLeftSpace prendra la valeur de platforms[0].left qui == la valeur de la coordonnée gauche du DOMRECT (l'emplacement de la platform)
-        On donne à la div doodler, des style.left et style.bottom en px. Style.bottom aura la valeur donné au début.  
-    */
     function createDoodler() {
         grid.appendChild(doodler)
         doodler.classList.add('doodler')
@@ -52,23 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         doodler.style.bottom = doodlerBottomSpace + 'px'        
     }
 
-
-
-    /*
-        creation de la class platform. Une class pour chaque objet platform créées.
-        le constructeur prend l'argument newPlatBottom. Une variable crée dans la fn creatPlatform, elle a pour valeur (100 + i * platGap), ce qui change a chaque objet créés.
-        On donne à la propriété bottom, la let newPlatBottom, qui va changer pour chaque objet créés.
-        On donne à la propriété left, une valeur aléatoire en 0 et 315, qui va changer a chaque objet (il est possible d'avoir deux les meme)
-        On créé une instance visaul et on lui crée un element, une div
-
-        ensuite, on créé une constante visual, qui prendra la valeur de l'instance visual de la class (this.visual).
-        On donne un attribut class de valeur platform.
-        On donne du css, left, elle aura pour valeur, la valeur du this.left ( l'emplacement du DOMRECT de l'objet crée ) + 'px' 
-        On donne du css, bottom, elle aura pour valeur, la valeur du this.bottom ( l'emplacement du DOMRECT de l'objet crée ) + 'px'
-        On ajoute cette constante à grid
-
-        Ceci, crée une plateforme
-    */
     class Platform {
         constructor(newPlatBottom) {
             this.bottom = newPlatBottom
@@ -83,10 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-    /*
-
-    */
     function movePlatforms() {
         if (doodlerBottomSpace > 200) {
             platforms.forEach(platform => {
@@ -204,16 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
-    /*
-        Fonction principal.
-        Elle check si IsGameOver n'est pas false. Si il est pas false, on rentre dans la condition.
-        On lance la fonction createPlateform.
-        Ensuite, on lance la fonction createDoodler.
-        Ensuite, on lance une interval sur la fonction movePlateform.
-        Ensuite, on lance la function jump.
-        Event sur keyup.
-    */
     function start() {
         if (!isGameOver) {
             createPlatforms()
@@ -224,11 +177,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     start()
-
-
-
-
-
-
 
 })
