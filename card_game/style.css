@@ -20,18 +20,83 @@
 
 ---     rotateY(xdeg) ===> transformation qui déplace un élément autour d'un point fixe.
 
+---     display ===> défini le type de rendu d'un affcha d'un élément
+        flex ===> propriété qui peremet de rendre son élément flexible
+        grid ===> propriété lié aux grilles
+
+---     justify-content ===> indique la fafcon dont l'espace doit être utiliser
+        center ===> l'element doit être centrer dans son bloc
+
+
+---     calc ===> il est possible de faire des calcules en css ac ceci
+
+---     grid-template-columns ===> cette propriété définit les noms des lignes et les tailles
+        grid-template-rows ===> cette propriété définit les noms des lignes et les tailles
+        grid-template-aera ===> cette propriété définit des zones de grilles
+
+
+
+
+
+
+
+
+
 
 
  */
 :root {
     --card-width: 157px;
     --card-height: 220px;
+    --num-cards: 4;
+    --card-horizontale-space: 100px;
 }
 
-.card-containeur {
-    margin-top: 30px;
-    position: relative;
+body {
+    height: 100vh;
 }
+
+main {
+    height: 55%;
+    display: flex;
+    justify-content: center;
+}
+
+.card-container {
+    position: relative;
+    height: 100%;
+    width:calc(var(--card-width) * (var(--num-cards) / 2) + var(--card-horizontal-space));
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "a b"
+                         "c d";
+    border:1px solid black;
+}
+
+
+.card-pos-a {
+    grid-area: a;
+    background-color: aqua;
+}
+.card-pos-b {
+    grid-area: b;
+    background-color: yellow;
+}
+.card-pos-c {
+    grid-area: c;
+    background-color: red;
+}
+.card-pos-d {
+    grid-area: d;
+    background-color: saddlebrown;
+}
+
+
+
+
+
+
 
 .card {
     position: absolute;
@@ -70,3 +135,5 @@
 .card:hover .card-inner{
     transform: rotateY(180deg);
 }
+
+
